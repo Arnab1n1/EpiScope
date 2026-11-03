@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EpiScope: disease surveillance, forecast &amp; response planning</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><h1>EpiScope</h1><span class="sub">Early warning, forecasts and supply allocation, by district</span></div>
+  <div class="controls">
+    <label>Disease
+      <select id="sel-disease" aria-label="Disease"></select></label>
+    <label>Role
+      <select id="sel-role" aria-label="User role"><option value="national">National (all districts)</option></select></label>
+    <button id="btn-clear" title="Clear district selection">Clear selection</button>
+  </div>
+  <div class="badges">
+    <span class="badge synthetic" title="All encounter data is synthetic (teaching case)">SYNTHETIC DATA</span>
+    <span class="badge fresh" id="fresh">loading...</span>
+    <span class="badge" id="dq-tile" tabindex="0" title="Data quality of the latest load">DQ: ...</span>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="card-map">
+    <h2>1. Incidence and alerts <small id="map-sub"></small></h2>
+    <div id="map"></div><div class="legend" id="map-legend"></div>
+    <p class="foot">Hatched = contains suppressed counts (1-4 cases hidden for privacy). Triangles = alert at the chosen threshold.</p>
+  </section>
+
+  <section class="card" id="card-series">
+    <h2>2. Weekly cases, forecast and alert threshold <small id="series-sub"></small></h2>
+    <div id="series"></div>
+    <div id="context"></div>
+    <p class="foot">Drag on the lower strip to select a time range (updates every view). Shaded bands: 80% and 95% prediction intervals. Dashed line: alert threshold.</p>
+  </section>
+
+  <section class="card" id="card-heat">
+    <h2>3. Seasonality: week of year x year <small id="heat-sub"></small></h2>
+    <div id="heat"></div>
+    <p class="foot">Click a cell to jump to that week. Vertical marks: preparedness calendar (pre-position / campaign start) for the selected district's division.</p>
+  </section>
+
+  <section class="card" id="card-alloc">
+    <h2>4. Supply allocation <small id="alloc-sub"></small></h2>
+    <div class="whatif">
+      <label>Resource <select id="sel-res"></select></label>
+      <label>Budget level <input type="range" id="sl-budget" min="0" max="4" step="1" value="2"> <output id="o-budget"></output></label>
+      <label>Equity floor &alpha; <input type="range" id="sl-alpha" min="0" max="4" step="1" value="1"> <output id="o-alpha"></output></label>
+      <label>Alert threshold &tau; <input type="range" id="sl-tau" min="1.5" max="8" step="0.5" value="3"> <output id="o-tau"></output></label>
+    </div>
+    <div id="alloc"></div>
+    <div id="alloc-summary" class="summary"></div>
+    <div id="equity"></div>
+    <p class="foot">Bars per district: forecast demand (80th percentile, next 4 weeks), current stock, recommended allocation. Equity floor &alpha; = share of a population-proportional split every district is guaranteed.</p>
+  </section>
+
+  <section class="card" id="card-table">
+    <h2>5. Early-warning ranking <small id="table-sub"></small></h2>
+    <div id="table-wrap"><table id="ewtable"><thead></thead><tbody></tbody></table></div>
+    <p class="foot">Ranked by C2 score at the end of the selected range. Click a row to select the district and disease.</p>
+  </section>
+</main>
+
+<div id="tooltip" role="tooltip"></div>
+<footer id="footer"></footer>
+
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script src="js/state.js"></script>
+<script src="js/data.js"></script>
+<script src="js/map.js"></script>
+<script src="js/series.js"></script>
+<script src="js/heatmap.js"></script>
+<script src="js/alloc.js"></script>
+<script src="js/table.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

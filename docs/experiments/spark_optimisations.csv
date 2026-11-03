@@ -1,0 +1,7 @@
+optimisation,metric,before,after,note
+broadcast join of registry,runtime_s,3.266,2.215,sort-merge join shuffles the large side; broadcast ships the ~600-row registry to every task
+Dhaka skew: AQE coalesce (off -> on),runtime_s,1.727,1.45,AQE merges tiny post-shuffle partitions and splits skewed ones
+Dhaka skew: two-stage salted aggregation vs plain (on),runtime_s,1.45,1.514,salting spreads the hot key; helps only when one key dominates a stage
+"partition pruning (epi_year=2023, division=Dhaka)",runtime_s,0.439,0.173,filter on partition columns skips whole directories; see 'number of files read' in the scan node
+file compaction (563 -> 56 files),runtime_s,1.368,0.44,daily incremental appends create many small files; compaction cuts task and listing overhead
+file compaction file count,files,563,56,size 17.53 MB -> 12.26 MB

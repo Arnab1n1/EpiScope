@@ -1,0 +1,15 @@
+.env
+.secrets/
+data/raw/
+data/drop/
+data/lake/
+data/lake_manifests/
+data/scale/
+data/ground_truth*/
+spark-warehouse/
+metastore_db/
+derby.log
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/

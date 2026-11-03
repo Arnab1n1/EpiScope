@@ -1,0 +1,16 @@
+# Optional: S3-compatible object store for the lake (ING-5).  docker compose up -d minio
+# then:  export EPISCOPE_LAKE=s3a://episcope/lake MINIO_ENDPOINT=http://localhost:9000 MINIO_ACCESS_KEY=minioadmin MINIO_SECRET_KEY=minioadmin
+services:
+  minio:
+    image: minio/minio:RELEASE.2024-05-10T01-41-38Z
+    command: server /data --console-address ":9001"
+    ports: ["9000:9000", "9001:9001"]
+    environment: { MINIO_ROOT_USER: minioadmin, MINIO_ROOT_PASSWORD: minioadmin }
+    volumes: ["minio-data:/data"]
+  minio-init:
+    image: minio/mc:RELEASE.2024-05-09T17-04-24Z
+    depends_on: [minio]
+    entrypoint: >
+      /bin/sh -c "sleep 5; mc alias set local http://minio:9000 minioadmin minioadmin; mc mb -p local/episcope; exit 0"
+volumes:
+  minio-data: {}

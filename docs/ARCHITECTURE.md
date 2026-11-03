@@ -1,0 +1,8 @@
+# Architecture and design decisions (short form; full discussion in the report)
+* **Layers**: bronze (append-only Parquet, partition `load_date`/`snapshot_date`, all columns strings) -> silver (`epi_year`,`division`) -> gold (`epi_year`,`division`).
+* **Two gold marts**: *onset-week* (revised as late records arrive; used for calendar/seasonality) and *report-week surveillance* (what was known that week; used for detection and forecasting, so backtests have no look-ahead from revisions).
+* **Artefact guard (P4)**: facility-volume completeness (expected volume of silent facilities / total expected) and late-report share flag `artefact_suspect` weeks; the gated detector uses reports within 7 days and ignores flagged weeks. The naive detector uses all reports. Measured at SF=0.01: naive raised 2 alerts in the artefact window, gated 0, at a cost of ~3 fewer detected outbreaks (see `RESULTS_SANDBOX.md`).
+* **Idempotency**: bronze skips (path, sha256) already loaded; silver processes only unseen batch ids and anti-joins `encounter_id`; gold is recomputed from silver.
+* **Forecast**: per district-disease Poisson-GLM mean (harmonics, 2 AR terms, lagged rainfall/temperature with k >= horizon, offsets log(pop), log(completeness)), NB2 dispersion by moments; direct multi-horizon; refit every 4 weeks in the rolling-origin backtest.
+* **Optimiser**: LP in PuLP/CBC (see `allocate.py` docstring); 5 budgets x 5 equity floors precomputed for the what-if panel.
+* **Privacy**: patient_id -> salted SHA-256 (not HMAC) truncated to 128 bits; salt from env or git-ignored `.secrets/`; no `patient_id`/`age_years` in silver; counts 1-4 suppressed in every published patient-count series; district bundles are separate files.
