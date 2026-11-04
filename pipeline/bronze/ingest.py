@@ -15,7 +15,7 @@ SOURCES = {
 
 
 def _uri(p):
-    return "file://" + os.path.abspath(p)
+    return "file:///" + os.path.abspath(p).replace("\\", "/").lstrip("/") if os.name == "nt" else "file://" + os.path.abspath(p)
 
 
 def ingest_source(spark, name, raw_root=None):
@@ -63,3 +63,4 @@ def run(spark, raw_root=None):
     ref = spark.read.option("header", True).csv(os.path.join(REF, "districts.csv"))
     ref.write.mode("overwrite").parquet(lake("ref_districts"))
     return n
+

@@ -1,33 +1,33 @@
 division,disease_group,typical_onset_week,peak_week,weeks_above_mean,preposition_from_week,campaign_from_week,action,seasonal_amplitude
-Barishal,DENGUE,30,36,10,26,24,"NS1 kits, IV saline; larval-control campaign",6.87
-Barishal,DIARRHOEAL,12,14,23,10,9,"ORS, IV saline; WASH campaign",2.88
-Barishal,ILI,24,31,15,21,20,"beds, antivirals; vaccination/awareness",5.01
-Barishal,MALARIA,23,51,30,19,17,"antimalarials, bed nets",0.0
-Chattogram,DENGUE,31,36,13,27,25,"NS1 kits, IV saline; larval-control campaign",4.85
-Chattogram,DIARRHOEAL,13,21,22,11,10,"ORS, IV saline; WASH campaign",2.22
-Chattogram,ILI,25,32,14,22,21,"beds, antivirals; vaccination/awareness",6.38
-Chattogram,MALARIA,27,33,14,23,21,"antimalarials, bed nets",6.29
-Dhaka,DENGUE,30,35,15,26,24,"NS1 kits, IV saline; larval-control campaign",6.48
-Dhaka,DIARRHOEAL,11,16,23,9,8,"ORS, IV saline; WASH campaign",2.92
-Dhaka,ILI,26,31,12,23,22,"beds, antivirals; vaccination/awareness",4.94
-Dhaka,MALARIA,3,43,22,47,45,"antimalarials, bed nets",2.87
-Khulna,DENGUE,31,36,13,27,25,"NS1 kits, IV saline; larval-control campaign",5.88
-Khulna,DIARRHOEAL,11,19,23,9,8,"ORS, IV saline; WASH campaign",3.07
-Khulna,ILI,25,31,15,22,21,"beds, antivirals; vaccination/awareness",5.4
-Khulna,MALARIA,1,24,2,45,43,"antimalarials, bed nets",15.91
-Mymensingh,DENGUE,33,36,11,29,27,"NS1 kits, IV saline; larval-control campaign",6.48
-Mymensingh,DIARRHOEAL,12,31,12,10,9,"ORS, IV saline; WASH campaign",2.76
-Mymensingh,ILI,28,34,10,25,24,"beds, antivirals; vaccination/awareness",4.92
-Mymensingh,MALARIA,25,51,28,21,19,"antimalarials, bed nets",0.0
-Rajshahi,DENGUE,30,35,13,26,24,"NS1 kits, IV saline; larval-control campaign",6.71
-Rajshahi,DIARRHOEAL,12,16,22,10,9,"ORS, IV saline; WASH campaign",2.29
-Rajshahi,ILI,25,34,14,22,21,"beds, antivirals; vaccination/awareness",4.19
-Rajshahi,MALARIA,30,46,11,26,24,"antimalarials, bed nets",0.03
-Rangpur,DENGUE,29,37,17,25,23,"NS1 kits, IV saline; larval-control campaign",5.26
-Rangpur,DIARRHOEAL,10,17,18,8,7,"ORS, IV saline; WASH campaign",2.45
-Rangpur,ILI,25,32,13,22,21,"beds, antivirals; vaccination/awareness",4.6
-Rangpur,MALARIA,32,38,1,28,26,"antimalarials, bed nets",48.35
-Sylhet,DENGUE,31,39,13,27,25,"NS1 kits, IV saline; larval-control campaign",9.13
-Sylhet,DIARRHOEAL,10,12,21,8,7,"ORS, IV saline; WASH campaign",3.29
-Sylhet,ILI,27,30,11,24,23,"beds, antivirals; vaccination/awareness",6.52
-Sylhet,MALARIA,28,37,5,24,22,"antimalarials, bed nets",18.55
+Barishal,DENGUE,30,35,14,26,24,"NS1 kits, IV saline; larval-control campaign",6.83
+Barishal,DIARRHOEAL,11,13,24,9,8,"ORS, IV saline; WASH campaign",2.0
+Barishal,ILI,25,32,14,22,21,"beds, antivirals; vaccination/awareness",5.6
+Barishal,MALARIA,27,32,15,23,21,"antimalarials, bed nets",6.08
+Chattogram,DENGUE,30,38,13,26,24,"NS1 kits, IV saline; larval-control campaign",6.05
+Chattogram,DIARRHOEAL,11,19,23,9,8,"ORS, IV saline; WASH campaign",2.16
+Chattogram,ILI,25,32,13,22,21,"beds, antivirals; vaccination/awareness",7.94
+Chattogram,MALARIA,26,34,14,22,20,"antimalarials, bed nets",5.98
+Dhaka,DENGUE,30,37,14,26,24,"NS1 kits, IV saline; larval-control campaign",7.59
+Dhaka,DIARRHOEAL,11,16,23,9,8,"ORS, IV saline; WASH campaign",2.33
+Dhaka,ILI,25,30,14,22,21,"beds, antivirals; vaccination/awareness",4.38
+Dhaka,MALARIA,25,34,15,21,19,"antimalarials, bed nets",5.4
+Khulna,DENGUE,31,35,14,27,25,"NS1 kits, IV saline; larval-control campaign",5.77
+Khulna,DIARRHOEAL,11,16,16,9,8,"ORS, IV saline; WASH campaign",2.03
+Khulna,ILI,25,32,14,22,21,"beds, antivirals; vaccination/awareness",4.89
+Khulna,MALARIA,31,34,7,27,25,"antimalarials, bed nets",5.62
+Mymensingh,DENGUE,30,36,14,26,24,"NS1 kits, IV saline; larval-control campaign",8.4
+Mymensingh,DIARRHOEAL,11,18,23,9,8,"ORS, IV saline; WASH campaign",2.27
+Mymensingh,ILI,26,31,13,23,22,"beds, antivirals; vaccination/awareness",5.23
+Mymensingh,MALARIA,29,33,9,25,23,"antimalarials, bed nets",7.0
+Rajshahi,DENGUE,30,35,13,26,24,"NS1 kits, IV saline; larval-control campaign",5.18
+Rajshahi,DIARRHOEAL,10,19,22,8,7,"ORS, IV saline; WASH campaign",1.85
+Rajshahi,ILI,25,31,14,22,21,"beds, antivirals; vaccination/awareness",4.0
+Rajshahi,MALARIA,25,32,16,21,19,"antimalarials, bed nets",5.07
+Rangpur,DENGUE,30,36,14,26,24,"NS1 kits, IV saline; larval-control campaign",6.67
+Rangpur,DIARRHOEAL,11,16,22,9,8,"ORS, IV saline; WASH campaign",2.07
+Rangpur,ILI,25,31,15,22,21,"beds, antivirals; vaccination/awareness",4.71
+Rangpur,MALARIA,26,29,15,22,20,"antimalarials, bed nets",5.07
+Sylhet,DENGUE,31,35,14,27,25,"NS1 kits, IV saline; larval-control campaign",5.94
+Sylhet,DIARRHOEAL,13,20,21,11,10,"ORS, IV saline; WASH campaign",1.79
+Sylhet,ILI,26,32,13,23,22,"beds, antivirals; vaccination/awareness",6.51
+Sylhet,MALARIA,27,34,14,23,21,"antimalarials, bed nets",8.98
