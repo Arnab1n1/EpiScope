@@ -249,164 +249,87 @@ flowchart TB
 | Optional orchestration/storage support | Airflow DAG and MinIO-compatible Docker configuration |
 
 ## 4. Repository Structure
-EpiScope follows a modular project structure that separates data generation, distributed processing, analytics, serving, dashboard visualization, testing, and documentation.
+
+The repository is organised into the following main directories and files.
 
 ```text
-
 EpiScope/
-
-│
-
-├── generator/                  # Synthetic data generation and reference inputs
-
-│   ├── generate.py
-
-│   ├── fetch_boundaries.py
-
-│   └── fetch_weather.py
-
-│
-
-├── pipeline/                   # Bronze-Silver-Gold data processing
-
-│   ├── bronze/
-
-│   │   └── ingest.py
-
-│   ├── silver/
-
-│   │   └── build.py
-
-│   ├── gold/
-
-│   │   └── build.py
-
-│   ├── quality/
-
-│   │   └── rules.py
-
-│   ├── common.py
-
-│   └── run.py
-
-│
-
-├── analytics/                  # Epidemiological and operational analytics
-
-│   ├── detection/
-
-│   │   ├── detect.py
-
-│   │   └── evaluate.py
-
-│   ├── forecast/
-
-│   │   ├── forecast.py
-
-│   │   └── backtest.py
-
-│   ├── optimise/
-
-│   │   └── allocate.py
-
-│   ├── calendar/
-
-│   │   └── calendar.py
-
-│   └── run_all.py
-
-│
-
-├── serving/                    # Data aggregation and privacy suppression
-
-│   ├── export.py
-
-│   └── suppress.py
-
-│
-
-├── dashboard/                  # Interactive D3.js dashboard
-
-│   ├── index.html
-
-│   ├── css/
-
-│   ├── js/
-
-│   ├── vendor/
-
-│   └── data/
-
-│
-
-├── tests/                      # Automated project tests
-
-│
-
-├── orchestration/              # Workflow orchestration definition
-
-│   └── episcope_dag.py
-
-│
-
-├── scripts/                    # Execution helpers and performance experiments
-
-│   ├── run_windows.ps1
-
-│   ├── scale_experiment.py
-
-│   └── spark_opt_experiment.py
-
-│
-
-├── docs/                       # Project documentation and evidence
-
-│   ├── ARCHITECTURE.md
-
-│   ├── DATA_SOURCES.md
-
-│   ├── RESULTS_SANDBOX.md
-
-│   ├── proposal.md
-
-│   ├── experiments/
-
-│   ├── screenshots/
-
-│   └── BDA_CEP_ASSIGNMENT_REPORT.pdf
-
-│
-
-├── requirements.txt             # Python dependencies
-
-├── docker-compose.yml           # Container configuration
-
-├── Makefile                     # Project automation commands
-
-├── .env.example                 # Environment configuration template
-
-├── AI_USAGE.md                  # AI usage disclosure
-
-└── README.md                    # Project overview and documentation
-
+├── generator/
+│   ├── generate.py
+│   ├── fetch_boundaries.py
+│   └── fetch_weather.py
+├── pipeline/
+│   ├── bronze/
+│   │   └── ingest.py
+│   ├── silver/
+│   │   └── build.py
+│   ├── gold/
+│   │   └── build.py
+│   ├── quality/
+│   │   └── rules.py
+│   ├── common.py
+│   └── run.py
+├── analytics/
+│   ├── detection/
+│   │   ├── detect.py
+│   │   └── evaluate.py
+│   ├── forecast/
+│   │   ├── forecast.py
+│   │   └── backtest.py
+│   ├── optimise/
+│   │   └── allocate.py
+│   ├── calendar/
+│   │   └── calendar.py
+│   └── run_all.py
+├── serving/
+│   ├── export.py
+│   └── suppress.py
+├── dashboard/
+│   ├── index.html
+│   ├── css/
+│   ├── js/
+│   ├── vendor/
+│   └── data/
+├── tests/
+├── orchestration/
+│   └── episcope_dag.py
+├── scripts/
+│   ├── run_windows.ps1
+│   ├── scale_experiment.py
+│   └── spark_opt_experiment.py
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── DATA_SOURCES.md
+│   ├── RESULTS_SANDBOX.md
+│   ├── proposal.md
+│   ├── experiments/
+│   ├── screenshots/
+│   └── BDA_CEP_ASSIGNMENT_REPORT.pdf
+├── requirements.txt
+├── docker-compose.yml
+├── Makefile
+├── .env.example
+├── AI_USAGE.md
+└── README.md
 ```
 
 ### Directory overview
+
 | Directory | Purpose |
 |---|---|
-| `generator/` | Generates synthetic encounters and fetches reference inputs. |
-| `pipeline/` | Handles ingestion, validation, cleaning, and data aggregation. |
-| `analytics/` | Performs outbreak detection, forecasting, optimisation, and calendar generation. |
-| `serving/` | Prepares aggregated outputs and applies small-cell suppression. |
-| `dashboard/` | Contains the interactive D3.js visualization interface. |
-| `tests/` | Contains automated tests for project functionality. |
-| `orchestration/` | Contains the workflow orchestration definition. |
-| `scripts/` | Provides execution helpers and performance experiment scripts. |
-| `docs/` | Stores architecture, data sources, experiment results, screenshots, and reports. |
+| `generator/` | Synthetic data generation and reference inputs |
+| `pipeline/` | Bronze, Silver, and Gold data processing |
+| `analytics/` | Outbreak detection, forecasting, optimisation, and calendar generation |
+| `serving/` | Aggregated data export and privacy suppression |
+| `dashboard/` | Interactive D3.js dashboard |
+| `tests/` | Automated project tests |
+| `orchestration/` | Workflow orchestration definition |
+| `scripts/` | Execution helpers and performance experiments |
+| `docs/` | Architecture, data sources, proposal, experiment results, screenshots, and technical report |
 
-Generated data folders such as `data/raw/` and `data/lake/`, along with local secrets and virtual environments, are created or maintained during execution and are not required to be committed to the repository.
+Generated data folders such as `data/raw/` and `data/lake/`, along with local secrets and virtual environments, are created during execution and are not required to be committed to the repository.
 
-> **Repository note:** The tree is a guide to the repository layout. The technical report link at the top of this README expects the final PDF to be committed as `docs/BDA_CEP_ASSIGNMENT_REPORT.pdf`.
+> **Repository note:** The repository tree shows the intended project layout. The technical report link at the top of this README points to `docs/BDA_CEP_ASSIGNMENT_REPORT.pdf`.
 
 ## 5. Requirements and Environment
 The tested development environment used:
