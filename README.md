@@ -1,12 +1,24 @@
 # EpiScope: Big-Data Surveillance, Forecasting and Response Planning
 
+District surveillance, forecasting, and response planning for Bangladesh using Apache Spark and an interactive D3.js dashboard.
+
 **Course:** CSE 4345 - Big Data Analytics  
 **Department:** Computer Science & Engineering, Premier University, Chittagong  
 **Project type:** Complex Engineering Problem (CEP)  
 **Academic session:** Spring 2026  
 **Repository:** [Arnab1n1/EpiScope](https://github.com/Arnab1n1/EpiScope)  
-**Final release:** `v1.0` (create and push this tag before final handover)  
-**Video presentation:** `ADD THE FINAL SHAREABLE VIDEO LINK HERE`
+**Releases:** [View GitHub releases](https://github.com/Arnab1n1/EpiScope/releases)  
+**Video presentation:** [View the project presentation](https://drive.google.com/drive/folders/1OfRjQQsIg7F7AX9mRb0gF3MTnyzrgU_l?usp=drive_link)  
+**Technical report:** [BDA_CEP_ASSIGNMENT_REPORT.pdf](docs/BDA_CEP_ASSIGNMENT_REPORT.pdf)
+
+## Project Team
+
+| Team member | Student ID | Focus |
+|---|---|---|
+| Arnab Barua | 0222220005101091 | Project leadership and system architecture |
+| Mohammed Masrafi | 0222220005101080 | Analytics, forecasting, and resource optimisation |
+| Mohammed Iftekhar Sami | 0222220005101090 | Dashboard and visualisation |
+| Foisal Abideen | 0222220005101072 | Data quality, privacy, and validation |
 
 ---
 
@@ -121,10 +133,10 @@ Users can explore disease and district information, review forecast patterns, an
 
 ## 3. System Architecture
 
-The following architecture shows how EpiScope moves data from source generation and reference inputs through the Bronze, Silver, and Gold processing layers, into analytics, and finally to the dashboard.
+The architecture is arranged from left to right to make the full workflow easier to scan. The Bronze, Silver, and Gold layers are placed side by side, with wider labels to avoid the narrow, tall boxes in the previous diagram.
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph SOURCES["1. DATA SOURCES"]
         direction TB
         A["Synthetic Data Generator"]
@@ -135,10 +147,10 @@ flowchart TB
     end
 
     subgraph PIPELINE["2. DATA ENGINEERING PIPELINE"]
-        direction TB
-        D["BRONZE LAYER<br/>Data Ingestion<br/>Source · Load Time · Batch ID · Checksum"]
+        direction LR
+        D["BRONZE LAYER<br/>Ingestion<br/>Source · Load time · Batch ID · Checksum"]
         E["SILVER LAYER<br/>Validation · Cleaning · De-identification<br/>Deduplication · Quarantine · Lineage"]
-        F["GOLD LAYER<br/>Curated Epidemiology and Operations Data Marts"]
+        F["GOLD LAYER<br/>Curated epidemiology and operations data marts"]
         D --> E --> F
     end
 
@@ -148,7 +160,7 @@ flowchart TB
         direction TB
         G["Analytics Engine"]
         H["Outbreak Detection<br/>EARS C2 · CUSUM"]
-        I["Disease Forecasting<br/>1–4 Weeks"]
+        I["Disease Forecasting<br/>1–4 weeks"]
         J["Demand and Resource Optimisation"]
         K["Seasonal Preparedness Calendar"]
         G --> H
@@ -281,7 +293,7 @@ EpiScope/
 │   ├── proposal.md
 │   ├── experiments/
 │   ├── screenshots/
-│   └── EpiScope_CEP_Report.pdf
+│   └── BDA_CEP_ASSIGNMENT_REPORT.pdf
 │
 ├── requirements.txt             # Python dependencies
 ├── docker-compose.yml           # Container configuration
@@ -307,7 +319,7 @@ EpiScope/
 
 Generated data folders such as `data/raw/` and `data/lake/`, along with local secrets and virtual environments, are created or maintained during execution and are not required to be committed to the repository.
 
-> **Repository note:** The tree above reflects the project layout documented for this release. Before submission, confirm that each listed file and folder is present in the GitHub repository. In particular, add the final report PDF and documentation files only after confirming their actual paths.
+> **Repository note:** The tree is a guide to the repository layout. The technical report link at the top of this README expects the final PDF to be committed as `docs/BDA_CEP_ASSIGNMENT_REPORT.pdf`.
 
 ## 5. Requirements and Environment
 
@@ -367,19 +379,24 @@ python -u -m analytics.run_all
 
 ### 6.3 Start the dashboard
 
+The dashboard can be viewed from the bundled, pre-generated JSON files. You do not need to rerun Spark or rebuild the data just to open the existing dashboard, as long as the exported files are present in `dashboard/data/`.
+
+Open PowerShell or a terminal at the **EpiScope repository root** and run:
+
 ```powershell
-.\scripts\run_windows.ps1 -Task serve
+python -m http.server 8000 --bind 127.0.0.1 --directory dashboard
 ```
 
-Then open:
+Keep the terminal running, then open this address in your browser:
 
-`http://localhost:8000`
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-Alternatively:
+To stop the local server, return to the terminal and press `Ctrl + C`.
+
+Alternatively, the project helper can be used:
 
 ```powershell
-cd dashboard
-python -m http.server 8000
+.\scripts\run_windows.ps1 -Task serve
 ```
 
 ### 6.4 Run automated tests
@@ -595,30 +612,12 @@ The current project is a working prototype, and the following limitations should
 - Accessibility and usability testing with non-technical users must be documented.
 - Spark UI screenshots and full before/after optimisation evidence should be included in the final experiment documentation.
 
-## 13. Final Handover Checklist
+## 13. Documentation
 
-The assignment requires three final handover items: the private Git repository, the IEEE technical report PDF (including the two-page policy brief and mandatory appendices), and a shareable 15-20 minute video presentation.
-
-Before submission:
-
-- [ ] Replace the video placeholder at the top of this README with a working shareable link.
-- [ ] Confirm that the repository is private and the instructor has access.
-- [ ] Create and push the final `v1.0` tag.
-- [ ] Ensure all three team members have meaningful commits and the contribution matrix is agreed and signed.
-- [ ] Add the final IEEE report PDF under `docs/`.
-- [ ] Include the two-page policy brief, signed contribution matrix, and individual reflections in the report appendices.
-- [ ] Confirm all four dashboard screenshot files are present under `docs/screenshots/`.
-- [ ] Include the required `AI_USAGE.md` disclosure file and `docs/proposal.md`.
-- [ ] Verify the clean-clone run instructions and the hidden incremental-drop procedure.
-- [ ] Confirm the video is 1080p, 15-20 minutes, accessible without sign-in, and includes each member's lead segment of at least four minutes.
-- [ ] Ensure no committed file exceeds 50 MB and no secrets, salts, or API keys are present.
-
----
-
-## 14. Documentation
-
+- [Project Overview](#1-project-overview)
 - [Architecture and design decisions](docs/ARCHITECTURE.md)
 - [Data sources and provenance](docs/DATA_SOURCES.md)
 - [Project review](docs/PROJECT_REVIEW.md)
 - [Experiment results](docs/RESULTS_SANDBOX.md)
 - [Initial project proposal](docs/proposal.md)
+- [Technical report (PDF)](docs/BDA_CEP_ASSIGNMENT_REPORT.pdf)
